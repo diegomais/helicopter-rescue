@@ -1,0 +1,69 @@
+@font-face {
+  font-family: "An ode to noone";
+  src: url(../assets/font/an-ode-to-noone.ttf);
+}
+
+h1 {
+  font-family: "An ode to noone";
+  font-size: 40px;
+  color: #603a03;
+}
+
+body {
+  background-image: url(../assets/img/background.jpg);
+}
+
+#container {
+  width: 950px;
+  position: relative;
+  margin: 0 auto;
+  height: 630px;
+  background-image: url(../assets/img/landscape.jpg);
+  border-color: #fff;
+  border-style: solid;
+}
+
+#card {
+  width: 350px;
+  height: 200px;
+  background-color: #fff;
+  margin: 100px auto 0;
+  text-align: center;
+  padding: 50px;
+}
+
+#apache {
+  width: 256px;
+  height: 66px;
+  position: absolute;
+  left: 8px;
+  top: 179px;
+  background-image: url(../assets/img/apache.png);
+}
+
+#chopper {
+  width: 256px;
+  height: 66px;
+  position: absolute;
+  left: 689px;
+  top: 253px;
+  background-image: url(../assets/img/chopper.png);
+}
+
+#friend {
+  width: 44px;
+  height: 51px;
+  position: absolute;
+  left: 10px;
+  top: 464px;
+  background-image: url(../assets/img/friend.png);
+}
+
+#truck {
+  width: 165px;
+  height: 70px;
+  position: absolute;
+  left: 775px;
+  top: 447px;
+  background-image: url(../assets/img/truck.png);
+}
