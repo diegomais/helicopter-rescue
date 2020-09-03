@@ -27,6 +27,7 @@ function start() {
     moveBackground();
     moveApache();
     moveChopper();
+    moveTruck();
   }
 
   function moveBackground() {
@@ -67,6 +68,15 @@ function start() {
       chopperPositionY = parseInt(Math.random() * 334);
       $("#chopper").css("left", 694);
       $("#chopper").css("top", chopperPositionY);
+    }
+  }
+
+  function moveTruck() {
+    var truckPositionX = parseInt($("#truck").css("left"));
+    $("#truck").css("left", truckPositionX - 3);
+
+    if (truckPositionX <= 0) {
+      $("#truck").css("left", 775);
     }
   }
 }
