@@ -21,6 +21,7 @@ function start() {
   game.rescues = 0;
   game.deaths = 0;
   game.energy = 3;
+  game.chopperSpeed = 5;
 
   $(document).keydown(function (e) {
     game.keyPressed[e.which] = true;
@@ -74,7 +75,7 @@ function start() {
 
   function moveChopper() {
     var chopperPositionX = parseInt($("#chopper").css("left"));
-    $("#chopper").css("left", chopperPositionX - 5);
+    $("#chopper").css("left", chopperPositionX - game.chopperSpeed);
     $("#chopper").css("top", chopperPositionY);
 
     if (chopperPositionX <= 0) {
@@ -161,6 +162,7 @@ function start() {
 
     if (collisionShotChopper.length > 0) {
       game.score += 100;
+      game.chopperSpeed += 0.3;
       var chopperLeft = parseInt($("#chopper").css("left"));
       var chopperTop = parseInt($("#chopper").css("top"));
       explosionChopper(chopperLeft, chopperTop);
