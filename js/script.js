@@ -5,6 +5,7 @@ function start() {
   $("#container").append("<div id='truck'></div>");
   $("#container").append("<div id='friend' class='friend-animation'></div>");
   $("#container").append("<div id='score'></div>");
+  $("#container").append("<div id='energy'></div>");
 
   var game = {};
 
@@ -19,6 +20,7 @@ function start() {
   game.score = 0;
   game.rescues = 0;
   game.deaths = 0;
+  game.energy = 3;
 
   $(document).keydown(function (e) {
     game.keyPressed[e.which] = true;
@@ -38,6 +40,7 @@ function start() {
     moveFriend();
     collision();
     score();
+    energy();
   }
 
   function moveBackground() {
@@ -136,6 +139,7 @@ function start() {
     var collisionTruckFriend = $("#truck").collision($("#friend"));
 
     if (collisionApacheChopper.length > 0) {
+      game.energy--;
       var chopperLeft = parseInt($("#chopper").css("left"));
       var chopperTop = parseInt($("#chopper").css("top"));
       explosionChopper(chopperLeft, chopperTop);
@@ -146,6 +150,7 @@ function start() {
     }
 
     if (collisionApacheTruck.length > 0) {
+      game.energy--;
       var truckLeft = parseInt($("#truck").css("left"));
       var truckTop = parseInt($("#truck").css("top"));
       explosionTruck(truckLeft, truckTop);
@@ -286,5 +291,23 @@ function start() {
         game.deaths +
         "</h2>"
     );
+  }
+
+  function energy() {
+    if (game.energy === 3) {
+      $("#energy").css("background-image", "url(assets/img/energy3.png)");
+    }
+
+    if (game.energy === 2) {
+      $("#energy").css("background-image", "url(assets/img/energy2.png)");
+    }
+
+    if (game.energy === 1) {
+      $("#energy").css("background-image", "url(assets/img/energy1.png)");
+    }
+
+    if (game.energy === 0) {
+      $("#energy").css("background-image", "url(assets/img/energy0.png)");
+    }
   }
 }
