@@ -75,6 +75,12 @@ body {
   background-image: url(../assets/img/shot.png);
 }
 
+#explosion {
+  width: 15px;
+  height: 87px;
+  position: absolute;
+}
+
 .apache-animation {
   background-image: url(../assets/img/apache.png);
   animation: play 0.5s steps(2) infinite;

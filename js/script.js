@@ -31,6 +31,7 @@ function start() {
     moveChopper();
     moveTruck();
     moveFriend();
+    collision();
   }
 
   function moveBackground() {
@@ -116,6 +117,37 @@ function start() {
         shotTimer = null;
         $("#shot").remove();
         canShoot = true;
+      }
+    }
+  }
+
+  function collision() {
+    var collisionApacheChopper = $("#apache").collision($("#chopper"));
+
+    if (collisionApacheChopper.length > 0) {
+      var chopperLeft = parseInt($("#chopper").css("left"));
+      var chopperTop = parseInt($("#chopper").css("top"));
+      explosionChopper(chopperLeft, chopperTop);
+
+      chopperPositionY = parseInt(Math.random() * 334);
+      $("#chopper").css("left", 694);
+      $("#chopper").css("top", chopperPositionY);
+    }
+
+    function explosionChopper(chopperLeft, chopperTop) {
+      $("#container").append("<div id='explosion'></div");
+      $("#explosion").css("background-image", "url(assets/img/explosion.png)");
+      var div = $("#explosion");
+      div.css("left", chopperLeft);
+      div.css("top", chopperTop);
+      div.animate({ width: 200, opacity: 0 }, "slow");
+
+      var explosionTimer = window.setInterval(removeExplosion, 1000);
+
+      function removeExplosion() {
+        div.remove();
+        window.clearInterval(explosionTimer);
+        explosionTimer = null;
       }
     }
   }
