@@ -124,9 +124,11 @@ function start() {
 
   function collision() {
     var collisionApacheChopper = $("#apache").collision($("#chopper"));
+    var collisionApacheFriend = $("#apache").collision($("#friend"));
     var collisionApacheTruck = $("#apache").collision($("#truck"));
     var collisionShotChopper = $("#shot").collision($("#chopper"));
     var collisionShotTruck = $("#shot").collision($("#truck"));
+    var collisionTruckFriend = $("#truck").collision($("#friend"));
 
     if (collisionApacheChopper.length > 0) {
       var chopperLeft = parseInt($("#chopper").css("left"));
@@ -166,6 +168,20 @@ function start() {
       $("#shot").css("left", 950);
 
       setNewTruck();
+    }
+
+    if (collisionApacheFriend.length > 0) {
+      setNewFriend();
+      $("#friend").remove();
+    }
+
+    if (collisionTruckFriend.length > 0) {
+      var friendLeft = parseInt($("#friend").css("left"));
+      var friendTop = parseInt($("#friend").css("top"));
+      explosionFriend(friendLeft, friendTop);
+      $("#friend").remove();
+
+      setNewFriend();
     }
 
     function explosionChopper(chopperLeft, chopperTop) {
@@ -208,6 +224,20 @@ function start() {
       }
     }
 
+    function explosionFriend(friendLeft, friendTop) {
+      $("#container").append(
+        "<div id='friend-death' class='friend-death'></div"
+      );
+      $("#friend-death").css("top", friendTop);
+      $("#friend-death").css("left", friendLeft);
+      var explosionTimer = window.setInterval(removeExplosion, 1000);
+      function removeExplosion() {
+        $("#friend-death").remove();
+        window.clearInterval(explosionTimer);
+        explosionTimer = null;
+      }
+    }
+
     function setNewTruck() {
       var newTruckTimer = window.setInterval(setTruck, 5000);
 
@@ -217,6 +247,21 @@ function start() {
 
         if (game.over === false) {
           $("#container").append("<div id='truck'></div");
+        }
+      }
+    }
+
+    function setNewFriend() {
+      var newFriendTimer = window.setInterval(setFriend, 6000);
+
+      function setFriend() {
+        window.clearInterval(newFriendTimer);
+        newFriendTimer = null;
+
+        if (game.over === false) {
+          $("#container").append(
+            "<div id='friend' class='friend-animation'></div>"
+          );
         }
       }
     }
