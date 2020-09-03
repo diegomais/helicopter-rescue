@@ -28,6 +28,7 @@ function start() {
     moveApache();
     moveChopper();
     moveTruck();
+    moveFriend();
   }
 
   function moveBackground() {
@@ -77,6 +78,15 @@ function start() {
 
     if (truckPositionX <= 0) {
       $("#truck").css("left", 775);
+    }
+  }
+
+  function moveFriend() {
+    var friendPositionX = parseInt($("#friend").css("left"));
+    $("#friend").css("left", friendPositionX + 1);
+
+    if (friendPositionX > 906) {
+      $("#friend").css("left", 0);
     }
   }
 }
