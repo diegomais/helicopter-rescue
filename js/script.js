@@ -9,6 +9,8 @@ function start() {
 
   var keycode = { w: 87, s: 83, d: 68 };
 
+  var chopperPositionY = parseInt(Math.random() * 334);
+
   game.keyPressed = {};
 
   $(document).keydown(function (e) {
@@ -24,6 +26,7 @@ function start() {
   function loop() {
     moveBackground();
     moveApache();
+    moveChopper();
   }
 
   function moveBackground() {
@@ -52,6 +55,18 @@ function start() {
 
     if (game.keyPressed[keycode.d]) {
       console.log("d");
+    }
+  }
+
+  function moveChopper() {
+    var chopperPositionX = parseInt($("#chopper").css("left"));
+    $("#chopper").css("left", chopperPositionX - 5);
+    $("#chopper").css("top", chopperPositionY);
+
+    if (chopperPositionX <= 0) {
+      chopperPositionY = parseInt(Math.random() * 334);
+      $("#chopper").css("left", 694);
+      $("#chopper").css("top", chopperPositionY);
     }
   }
 }
