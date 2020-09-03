@@ -84,23 +84,23 @@ body {
 
 .apache-animation {
   background-image: url(../assets/img/apache.png);
-  animation: play 0.5s steps(2) infinite;
-  -webkit-animation: play 0.5s steps(2) infinite;
-  -moz-animation: play 0.5s steps(2) infinite;
-  -ms-animation: play 0.5s steps(2) infinite;
-  -o-animation: play 0.5s steps(2) infinite;
+  animation: chopperAnimation 0.5s steps(2) infinite;
+  -webkit-animation: chopperAnimation 0.5s steps(2) infinite;
+  -moz-animation: chopperAnimation 0.5s steps(2) infinite;
+  -ms-animation: chopperAnimation 0.5s steps(2) infinite;
+  -o-animation: chopperAnimation 0.5s steps(2) infinite;
 }
 
 .chopper-animation {
   background-image: url(../assets/img/chopper.png);
-  animation: play 0.5s steps(2) infinite;
-  -webkit-animation: play 0.5s steps(2) infinite;
-  -moz-animation: play 0.5s steps(2) infinite;
-  -ms-animation: play 0.5s steps(2) infinite;
-  -o-animation: play 0.5s steps(2) infinite;
+  animation: chopperAnimation 0.5s steps(2) infinite;
+  -webkit-animation: chopperAnimation 0.5s steps(2) infinite;
+  -moz-animation: chopperAnimation 0.5s steps(2) infinite;
+  -ms-animation: chopperAnimation 0.5s steps(2) infinite;
+  -o-animation: chopperAnimation 0.5s steps(2) infinite;
 }
 
-@keyframes play {
+@keyframes chopperAnimation {
   from {
     background-position: 0px;
   }
@@ -109,7 +109,7 @@ body {
   }
 }
 
-@-webkit-keyframes play {
+@-webkit-keyframes chopperAnimation {
   from {
     background-position: 0px;
   }
@@ -118,7 +118,7 @@ body {
   }
 }
 
-@-moz-keyframes play {
+@-moz-keyframes chopperAnimation {
   from {
     background-position: 0px;
   }
@@ -127,7 +127,7 @@ body {
   }
 }
 
-@-ms-keyframes play {
+@-ms-keyframes chopperAnimation {
   from {
     background-position: 0px;
   }
@@ -136,7 +136,7 @@ body {
   }
 }
 
-@-o-keyframes play {
+@-o-keyframes chopperAnimation {
   from {
     background-position: 0px;
   }
@@ -147,14 +147,14 @@ body {
 
 .friend-animation {
   background-image: url(../assets/img/friend.png);
-  animation: play2 0.9s steps(12) infinite;
-  -webkit-animation: play2 0.9s steps(12) infinite;
-  -moz-animation: play2 0.9s steps(12) infinite;
-  -ms-animation: play2 0.9s steps(12) infinite;
-  -o-animation: play2 0.9s steps(12) infinite;
+  animation: friendAnimation 0.9s steps(12) infinite;
+  -webkit-animation: friendAnimation 0.9s steps(12) infinite;
+  -moz-animation: friendAnimation 0.9s steps(12) infinite;
+  -ms-animation: friendAnimation 0.9s steps(12) infinite;
+  -o-animation: friendAnimation 0.9s steps(12) infinite;
 }
 
-@keyframes play2 {
+@keyframes friendAnimation {
   from {
     background-position: 0px;
   }
@@ -163,7 +163,7 @@ body {
   }
 }
 
-@-webkit-keyframes play2 {
+@-webkit-keyframes friendAnimation {
   from {
     background-position: 0px;
   }
@@ -172,7 +172,7 @@ body {
   }
 }
 
-@-moz-keyframes play2 {
+@-moz-keyframes friendAnimation {
   from {
     background-position: 0px;
   }
@@ -181,7 +181,7 @@ body {
   }
 }
 
-@-ms-keyframes play2 {
+@-ms-keyframes friendAnimation {
   from {
     background-position: 0px;
   }
@@ -190,7 +190,7 @@ body {
   }
 }
 
-@-o-keyframes play2 {
+@-o-keyframes friendAnimation {
   from {
     background-position: 0px;
   }
