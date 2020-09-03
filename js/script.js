@@ -11,6 +11,8 @@ function start() {
 
   var chopperPositionY = parseInt(Math.random() * 334);
 
+  var canShoot = true;
+
   game.keyPressed = {};
 
   $(document).keydown(function (e) {
@@ -56,7 +58,7 @@ function start() {
     }
 
     if (game.keyPressed[keycode.d]) {
-      console.log("d");
+      shoot();
     }
   }
 
@@ -87,6 +89,34 @@ function start() {
 
     if (friendPositionX > 906) {
       $("#friend").css("left", 0);
+    }
+  }
+
+  function shoot() {
+    if (canShoot === true) {
+      canShoot = false;
+
+      var apacheTop = parseInt($("#apache").css("top"));
+      var apacheLeft = parseInt($("#apache").css("left"));
+      var shotTop = apacheTop + 37;
+      var shotLeft = apacheLeft + 190;
+      $("#container").append("<div id='shot'></div");
+      $("#shot").css("top", shotTop);
+      $("#shot").css("left", shotLeft);
+
+      var shotTimer = window.setInterval(executeShot, 30);
+    }
+
+    function executeShot() {
+      var shotLeft = parseInt($("#shot").css("left"));
+      $("#shot").css("left", shotLeft + 15);
+
+      if (shotLeft > 900) {
+        window.clearInterval(shotTimer);
+        shotTimer = null;
+        $("#shot").remove();
+        canShoot = true;
+      }
     }
   }
 }
