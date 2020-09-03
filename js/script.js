@@ -14,6 +14,7 @@ function start() {
   var canShoot = true;
 
   game.keyPressed = {};
+  game.over = false;
 
   $(document).keydown(function (e) {
     game.keyPressed[e.which] = true;
@@ -123,6 +124,9 @@ function start() {
 
   function collision() {
     var collisionApacheChopper = $("#apache").collision($("#chopper"));
+    var collisionApacheTruck = $("#apache").collision($("#truck"));
+    var collisionShotChopper = $("#shot").collision($("#chopper"));
+    var collisionShotTruck = $("#shot").collision($("#truck"));
 
     if (collisionApacheChopper.length > 0) {
       var chopperLeft = parseInt($("#chopper").css("left"));
@@ -134,10 +138,43 @@ function start() {
       $("#chopper").css("top", chopperPositionY);
     }
 
+    if (collisionApacheTruck.length > 0) {
+      var truckLeft = parseInt($("#truck").css("left"));
+      var truckTop = parseInt($("#truck").css("top"));
+      explosionTruck(truckLeft, truckTop);
+      $("#truck").remove();
+
+      setNewTruck();
+    }
+
+    if (collisionShotChopper.length > 0) {
+      var chopperLeft = parseInt($("#chopper").css("left"));
+      var chopperTop = parseInt($("#chopper").css("top"));
+      explosionChopper(chopperLeft, chopperTop);
+      $("#shot").css("left", 950);
+
+      chopperPositionY = parseInt(Math.random() * 334);
+      $("#chopper").css("left", 694);
+      $("#chopper").css("top", chopperPositionY);
+    }
+
+    if (collisionShotTruck.length > 0) {
+      var truckLeft = parseInt($("#truck").css("left"));
+      var truckTop = parseInt($("#truck").css("top"));
+      $("#truck").remove();
+      explosionTruck(truckLeft, truckTop);
+      $("#shot").css("left", 950);
+
+      setNewTruck();
+    }
+
     function explosionChopper(chopperLeft, chopperTop) {
-      $("#container").append("<div id='explosion'></div");
-      $("#explosion").css("background-image", "url(assets/img/explosion.png)");
-      var div = $("#explosion");
+      $("#container").append("<div id='explosion-chopper'></div");
+      $("#explosion-chopper").css(
+        "background-image",
+        "url(assets/img/explosion.png)"
+      );
+      var div = $("#explosion-chopper");
       div.css("left", chopperLeft);
       div.css("top", chopperTop);
       div.animate({ width: 200, opacity: 0 }, "slow");
@@ -148,6 +185,39 @@ function start() {
         div.remove();
         window.clearInterval(explosionTimer);
         explosionTimer = null;
+      }
+    }
+
+    function explosionTruck(truckLeft, truckTop) {
+      $("#container").append("<div id='explosion-truck'></div");
+      $("#explosion-truck").css(
+        "background-image",
+        "url(assets/img/explosion.png)"
+      );
+      var div = $("#explosion-truck");
+      div.css("top", truckTop);
+      div.css("left", truckLeft);
+      div.animate({ width: 200, opacity: 0 }, "slow");
+
+      var explosionTimer = window.setInterval(removeExplosion, 1000);
+
+      function removeExplosion() {
+        div.remove();
+        window.clearInterval(explosionTimer);
+        explosionTimer = null;
+      }
+    }
+
+    function setNewTruck() {
+      var newTruckTimer = window.setInterval(setTruck, 5000);
+
+      function setTruck() {
+        window.clearInterval(newTruckTimer);
+        newTruckTimer = null;
+
+        if (game.over === false) {
+          $("#container").append("<div id='truck'></div");
+        }
       }
     }
   }

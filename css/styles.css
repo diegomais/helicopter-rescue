@@ -75,7 +75,8 @@ body {
   background-image: url(../assets/img/shot.png);
 }
 
-#explosion {
+#explosion-chopper,
+#explosion-truck {
   width: 15px;
   height: 87px;
   position: absolute;
