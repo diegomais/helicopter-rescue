@@ -3,14 +3,20 @@
   src: url(../assets/font/an-ode-to-noone.ttf);
 }
 
+body {
+  background-image: url(../assets/img/background.jpg);
+}
+
 h1 {
   font-family: "An ode to noone";
   font-size: 40px;
   color: #603a03;
 }
 
-body {
-  background-image: url(../assets/img/background.jpg);
+h2 {
+  font-family: "An ode to noone";
+  font-size: 20px;
+  color: #fff;
 }
 
 #container {
@@ -30,6 +36,14 @@ body {
   margin: 100px auto 0;
   text-align: center;
   padding: 50px;
+}
+
+#score {
+  width: 450px;
+  height: 50px;
+  position: absolute;
+  left: 5px;
+  top: 590px;
 }
 
 #apache {

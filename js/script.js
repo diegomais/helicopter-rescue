@@ -4,6 +4,7 @@ function start() {
   $("#container").append("<div id='chopper' class='chopper-animation'></div>");
   $("#container").append("<div id='truck'></div>");
   $("#container").append("<div id='friend' class='friend-animation'></div>");
+  $("#container").append("<div id='score'></div>");
 
   var game = {};
 
@@ -15,6 +16,9 @@ function start() {
 
   game.keyPressed = {};
   game.over = false;
+  game.score = 0;
+  game.rescues = 0;
+  game.deaths = 0;
 
   $(document).keydown(function (e) {
     game.keyPressed[e.which] = true;
@@ -33,6 +37,7 @@ function start() {
     moveTruck();
     moveFriend();
     collision();
+    score();
   }
 
   function moveBackground() {
@@ -150,6 +155,7 @@ function start() {
     }
 
     if (collisionShotChopper.length > 0) {
+      game.score += 100;
       var chopperLeft = parseInt($("#chopper").css("left"));
       var chopperTop = parseInt($("#chopper").css("top"));
       explosionChopper(chopperLeft, chopperTop);
@@ -161,6 +167,7 @@ function start() {
     }
 
     if (collisionShotTruck.length > 0) {
+      game.score += 50;
       var truckLeft = parseInt($("#truck").css("left"));
       var truckTop = parseInt($("#truck").css("top"));
       $("#truck").remove();
@@ -171,11 +178,13 @@ function start() {
     }
 
     if (collisionApacheFriend.length > 0) {
+      game.rescues++;
       setNewFriend();
       $("#friend").remove();
     }
 
     if (collisionTruckFriend.length > 0) {
+      game.deaths++;
       var friendLeft = parseInt($("#friend").css("left"));
       var friendTop = parseInt($("#friend").css("top"));
       explosionFriend(friendLeft, friendTop);
@@ -265,5 +274,17 @@ function start() {
         }
       }
     }
+  }
+
+  function score() {
+    $("#score").html(
+      "<h2> Score: " +
+        game.score +
+        " Rescues: " +
+        game.rescues +
+        " Deaths: " +
+        game.deaths +
+        "</h2>"
+    );
   }
 }
