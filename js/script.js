@@ -327,6 +327,27 @@ function start() {
 
     if (game.energy === 0) {
       $("#energy").css("background-image", "url(assets/img/energy0.png)");
+      gameOver();
     }
+  }
+
+  function gameOver() {
+    game.over = true;
+    musicBackground.pause();
+    soundGameOver.play();
+
+    window.clearInterval(game.loop);
+    game.loop = null;
+
+    $("#apache").remove();
+    $("#chopper").remove();
+    $("#truck").remove();
+    $("#friend").remove();
+
+    $("#container").append("<div id='game-over'></div>");
+
+    $("#game-over").html(
+      "<h1> Game Over </h1><p>Your score was: " + game.score + "</p>"
+    );
   }
 }
