@@ -7,6 +7,13 @@ function start() {
   $("#container").append("<div id='score'></div>");
   $("#container").append("<div id='energy'></div>");
 
+  var musicBackground = document.getElementById("musicBackground");
+  var soundDeath = document.getElementById("soundDeath");
+  var soundExplosion = document.getElementById("soundExplosion");
+  var soundGameOver = document.getElementById("soundGameOver");
+  var soundRescue = document.getElementById("soundRescue");
+  var soundShoot = document.getElementById("soundShoot");
+
   var game = {};
 
   var keycode = { w: 87, s: 83, d: 68 };
@@ -32,6 +39,12 @@ function start() {
   });
 
   game.loop = setInterval(loop, 30);
+
+  musicBackground.addEventListener("ended", function () {
+    musicBackground.currentTime = 0;
+    musicBackground.play();
+  });
+  musicBackground.play();
 
   function loop() {
     moveBackground();
@@ -106,7 +119,7 @@ function start() {
   function shoot() {
     if (canShoot === true) {
       canShoot = false;
-
+      soundShoot.play();
       var apacheTop = parseInt($("#apache").css("top"));
       var apacheLeft = parseInt($("#apache").css("left"));
       var shotTop = apacheTop + 37;
@@ -185,6 +198,7 @@ function start() {
     }
 
     if (collisionApacheFriend.length > 0) {
+      soundRescue.play();
       game.rescues++;
       setNewFriend();
       $("#friend").remove();
@@ -201,6 +215,7 @@ function start() {
     }
 
     function explosionChopper(chopperLeft, chopperTop) {
+      soundExplosion.play();
       $("#container").append("<div id='explosion-chopper'></div");
       $("#explosion-chopper").css(
         "background-image",
@@ -221,6 +236,7 @@ function start() {
     }
 
     function explosionTruck(truckLeft, truckTop) {
+      soundExplosion.play();
       $("#container").append("<div id='explosion-truck'></div");
       $("#explosion-truck").css(
         "background-image",
@@ -241,6 +257,7 @@ function start() {
     }
 
     function explosionFriend(friendLeft, friendTop) {
+      soundDeath.play();
       $("#container").append(
         "<div id='friend-death' class='friend-death'></div"
       );
