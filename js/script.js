@@ -347,7 +347,16 @@ function start() {
     $("#container").append("<div id='game-over'></div>");
 
     $("#game-over").html(
-      "<h1> Game Over </h1><p>Your score was: " + game.score + "</p>"
+      "<h1> Game Over </h1><p>Your score was: " +
+        game.score +
+        "</p>" +
+        "<div id='restart' onClick=restartGame()><h3>Play again!</h3></div>"
     );
   }
+}
+
+function restartGame() {
+  soundGameOver.pause();
+  $("#game-over").remove();
+  start();
 }
